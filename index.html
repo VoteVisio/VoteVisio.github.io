@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoteVisio 2024</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #d32f2f, #f44336);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        header {
+            background: rgba(211, 47, 47, 0.9);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        header p {
+            font-size: 1em;
+            margin: 10px 0 0;
+        }
+
+        .candidats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .candidat {
+            background: #b71c1c;
+            border-radius: 20px;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .candidat:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .candidat img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            display: block;
+            border-bottom: 5px solid #e57373;
+        }
+
+        .candidat h2 {
+            margin: 15px 0;
+            font-size: 1.5em;
+            color: #fff;
+        }
+
+        .candidat a {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 24px;
+            background: #d0d0d0; /* Light grey background */
+            color: #333; /* Darker text color */
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: bold;
+            pointer-events: none; /* Makes the button unclickable */
+            cursor: not-allowed; /* Changes cursor to indicate unclickable */
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .candidat a:hover {
+            background: #b0b0b0; /* Slightly darker grey on hover */
+            color: #111; /* Even darker text color on hover */
+        }
+
+        footer {
+            background: rgba(211, 47, 47, 0.9);
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+            margin-top: auto;
+        }
+
+        @media (max-width: 1024px) {
+            .candidats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            header h1 {
+                font-size: 2.2em;
+            }
+
+            header p {
+                font-size: 0.9em;
+            }
+
+            .candidat h2 {
+                font-size: 1.4em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .candidats {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 0.9em;
+            }
+
+            .candidat {
+                margin: 0 auto;
+                max-width: 400px;
+            }
+
+            .candidat h2 {
+                font-size: 1.3em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            header p {
+                font-size: 0.8em;
+            }
+
+            .candidat img {
+                aspect-ratio: 1 / 1;
+            }
+
+            .candidat h2 {
+                font-size: 1.2em;
+            }
+
+            .candidat a {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>VoteVisio 2024</h1>
+        <p>Sélectionnez un candidat pour accéder à son programme.</p>
+    </header>
+
+    <section class="candidats">
+        <div class="candidat">
+            <img src="images/kais_saied.jpg" alt="Kaïs Saïed">
+            <h2>Kaïs Saïed</h2>
+            <a href="#" target="_blank">Pas de programme</a>
+        </div>
+        <div class="candidat">
+            <img src="images/zouhair_maghzaoui.jpg" alt="Zouhair Maghzaoui">
+            <h2>Zouhair Maghzaoui</h2>
+            <a href="#" target="_blank">Programme pas disponible</a>
+        </div>
+        <div class="candidat">
+            <img src="images/ayachi_zammel.jpg" alt="Ayachi Zammel">
+            <h2>Ayachi Zammel</h2>
+            <a href="#" target="_blank">Programme pas disponible</a>
+        </div>
+        <div class="candidat">
+            <img src="images/abdellatif_mekki.jpg" alt="Abdellatif Mekki">
+            <h2>Abdellatif Mekki</h2>
+            <a href="#" target="_blank">Programme pas disponible</a>
+        </div>
+        <div class="candidat">
+            <img src="images/mondher_zenaidi.jpg" alt="Mondher Zenaïdi">
+            <h2>Mondher Zenaïdi</h2>
+            <a href="#" target="_blank">Programme pas disponible</a>
+        </div>
+        <div class="candidat">
+            <img src="images/imed_daemi.jpg" alt="Imed Daïmi">
+            <h2>Imed Daïmi</h2>
+            <a href="#" target="_blank">Programme pas disponible</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>Mortadha Ghaliounji</p>
+    </footer>
+</body>
+</html>
