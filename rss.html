@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualités - VoteVisio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #1f1f1f;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        header img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+        }
+
+        .header-link {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #ff5722;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .header-link:hover {
+            background-color: #e64a19;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .news-item {
+            background: #1e1e1e;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+
+        .news-item h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .news-item a {
+            color: #ff5722;
+            text-decoration: none;
+        }
+
+        .news-item a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #1f1f1f;
+            color: #e0e0e0;
+            text-align: center;
+            padding: 15px;
+            margin-top: auto;
+        }
+
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .loading {
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #ff5722;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .news-item img {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .news-item h2 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="index.html" class="header-link">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <img src="images/logo.png" alt="VoteVisio 2024">
+    </header>
+
+    <section class="container">
+        <h1>Actualités</h1>
+        <div id="loading" class="loading-container">
+            <div class="loading"></div>
+        </div>
+        <div id="news-feed" class="d-none"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 VoteVisio</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
+    <script>
+        async function fetchRSS(url) {
+            const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`);
+            const data = await response.json();
+            const parser = new DOMParser();
+            const xml = parser.parseFromString(data.contents, 'text/xml');
+            return xml.querySelectorAll('item');
+        }
+
+        function filterPresidentialArticles(items) {
+            const presidentialKeywords = ['présidentielle', 'élection présidentielle', 'président', 'candidat', 'programme'];
+            return Array.from(items).filter(item => {
+                const title = item.querySelector('title').textContent.toLowerCase();
+                return presidentialKeywords.some(keyword => title.includes(keyword));
+            });
+        }
+
+        function removeDuplicateArticles(articles) {
+            const seen = new Set();
+            return articles.filter(article => {
+                const link = article.querySelector('link').textContent;
+                if (seen.has(link)) {
+                    return false;
+                }
+                seen.add(link);
+                return true;
+            });
+        }
+
+        async function fetchAndDisplayNews() {
+            const urls = [
+                'https://www.businessnews.com.tn/rss.xml',
+                'https://www.lemonde.fr/tunisie/rss_full.xml',
+                'https://kapitalis.com/tunisie/feed/'
+            ];
+
+            const allItems = [];
+            const loading = document.getElementById('loading');
+            const newsFeed = document.getElementById('news-feed');
+
+            for (const url of urls) {
+                const items = await fetchRSS(url);
+                allItems.push(...items);
+            }
+
+            loading.classList.add('d-none'); // Hide loading spinner
+
+            let filteredArticles = filterPresidentialArticles(allItems);
+            filteredArticles = removeDuplicateArticles(filteredArticles);
+
+            newsFeed.classList.remove('d-none'); // Show news feed
+
+            filteredArticles.forEach(item => {
+                const title = item.querySelector('title').textContent;
+                const link = item.querySelector('link').textContent;
+
+                const newsItem = document.createElement('div');
+                newsItem.classList.add('news-item');
+
+                newsItem.innerHTML = `
+                    <h2><a href="${link}" target="_blank">${title}</a></h2>
+                `;
+
+                newsFeed.appendChild(newsItem);
+            });
+        }
+
+        fetchAndDisplayNews();
+    </script>
+</body>
+
+</html>
