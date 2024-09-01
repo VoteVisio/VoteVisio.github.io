@@ -1,93 +1,121 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VoteVisio 2024</title>
+    <title>VoteVisio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to right, #d32f2f, #f44336);
+            background: linear-gradient(to right, #b71c1c, #f44336);
+            color: #fff;
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            color: #fff;
         }
 
         header {
-            background: rgba(211, 47, 47, 0.9);
-            color: #fff;
+            background: linear-gradient(to right, #b71c1c, #f44336);
             text-align: center;
             padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 40px;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-
-        header p {
-            font-size: 1em;
-            margin: 10px 0 0;
+        header img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
         }
 
         .candidats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            padding: 20px;
-            box-sizing: border-box;
+            padding: 0 50px;
         }
 
         .candidat {
-            background: #b71c1c;
+            background: #ffffff1a;
             border-radius: 20px;
-            overflow: hidden;
             text-align: center;
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            color: #fff;
+            padding-bottom: 20px;
         }
 
         .candidat:hover {
-            transform: scale(1.05);
+            transform: translateY(-10px);
             box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
         }
 
         .candidat img {
             width: 100%;
             height: auto;
-            aspect-ratio: 1 / 1;
             object-fit: cover;
-            display: block;
-            border-bottom: 5px solid #e57373;
+            aspect-ratio: 1 / 1;
+            border-bottom: 4px solid #f44336;
         }
 
         .candidat h2 {
-            margin: 15px 0;
-            font-size: 1.5em;
+            margin-top: 15px;
+            font-size: 1.8em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .parti-politique {
+            padding: 8px 12px;
+            border-radius: 15px;
+            margin: 10px auto 0;
+            font-size: 1em;
+            display: block;
             color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .independant {
+            background-color: #616161;
+        }
+
+        .mouvement-chaab {
+            background-color: #b71c1c;
+        }
+
+        .azimoun {
+            background-color: #fbc02d;
+        }
+
+        .amal-injaz {
+            background-color: #388e3c;
+        }
+
+        .hezb-harak {
+            background-color: #8bc34a;
         }
 
         .candidat a {
             display: inline-block;
-            margin: 10px;
-            padding: 12px 24px;
-            background: #d0d0d0; /* Light grey background */
-            color: #333; /* Darker text color */
+            margin: 20px 0;
+            padding: 15px 30px;
+            background: #ffffff1a;
+            color: #fff;
             text-decoration: none;
-            border-radius: 20px;
+            border-radius: 25px;
             font-weight: bold;
-            pointer-events: none; /* Makes the button unclickable */
-            cursor: not-allowed; /* Changes cursor to indicate unclickable */
+            pointer-events: none;
+            cursor: not-allowed;
             transition: background 0.3s ease, color 0.3s ease;
+            border: 2px solid #ffffff66;
         }
 
         .candidat a:hover {
-            background: #b0b0b0; /* Slightly darker grey on hover */
-            color: #111; /* Even darker text color on hover */
+            background: #ffffff33;
+            color: #ddd;
         }
 
         footer {
@@ -101,15 +129,17 @@
 
         @media (max-width: 1024px) {
             .candidats {
-                grid-template-columns: repeat(2, 1fr);
+                padding: 0 20px;
             }
 
-            header h1 {
-                font-size: 2.2em;
+            .candidat h2 {
+                font-size: 1.5em;
             }
+        }
 
-            header p {
-                font-size: 0.9em;
+        @media (max-width: 768px) {
+            .candidats {
+                padding: 0 10px;
             }
 
             .candidat h2 {
@@ -117,93 +147,86 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .candidats {
-                grid-template-columns: 1fr;
-            }
-
-            header h1 {
-                font-size: 2em;
-            }
-
-            header p {
-                font-size: 0.9em;
-            }
-
-            .candidat {
-                margin: 0 auto;
-                max-width: 400px;
+        @media (max-width: 480px) {
+            header img {
+                max-width: 150px;
             }
 
             .candidat h2 {
                 font-size: 1.3em;
             }
-        }
-
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 1.8em;
-            }
-
-            header p {
-                font-size: 0.8em;
-            }
-
-            .candidat img {
-                aspect-ratio: 1 / 1;
-            }
-
-            .candidat h2 {
-                font-size: 1.2em;
-            }
 
             .candidat a {
-                padding: 10px 20px;
+                padding: 12px 25px;
             }
         }
     </style>
 </head>
+
 <body>
     <header>
-        <h1>VoteVisio 2024</h1>
-        <p>Sélectionnez un candidat pour accéder à son programme.</p>
+        <img src="images/logo.png" alt="VoteVisio 2024">
     </header>
 
-    <section class="candidats">
-        <div class="candidat">
-            <img src="images/kais_saied.jpg" alt="Kaïs Saïed">
-            <h2>Kaïs Saïed</h2>
-            <a href="#" target="_blank">Pas de programme</a>
-        </div>
-        <div class="candidat">
-            <img src="images/zouhair_maghzaoui.jpg" alt="Zouhair Maghzaoui">
-            <h2>Zouhair Maghzaoui</h2>
-            <a href="#" target="_blank">Programme pas disponible</a>
-        </div>
-        <div class="candidat">
-            <img src="images/ayachi_zammel.jpg" alt="Ayachi Zammel">
-            <h2>Ayachi Zammel</h2>
-            <a href="#" target="_blank">Programme pas disponible</a>
-        </div>
-        <div class="candidat">
-            <img src="images/abdellatif_mekki.jpg" alt="Abdellatif Mekki">
-            <h2>Abdellatif Mekki</h2>
-            <a href="#" target="_blank">Programme pas disponible</a>
-        </div>
-        <div class="candidat">
-            <img src="images/mondher_zenaidi.jpg" alt="Mondher Zenaïdi">
-            <h2>Mondher Zenaïdi</h2>
-            <a href="#" target="_blank">Programme pas disponible</a>
-        </div>
-        <div class="candidat">
-            <img src="images/imed_daemi.jpg" alt="Imed Daïmi">
-            <h2>Imed Daïmi</h2>
-            <a href="#" target="_blank">Programme pas disponible</a>
+    <section class="container">
+        <div class="row candidats">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="candidat">
+                    <img src="images/kais_saied.jpg" alt="Kaïs Saïed">
+                    <h2>Kaïs Saïed</h2>
+                    <div class="parti-politique independant">Indépendant</div>
+                    <a href="#" target="_blank">Pas de programme</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="candidat">
+                    <img src="images/zouhair_maghzaoui.jpg" alt="Zouhair Maghzaoui">
+                    <h2>Zouhair Maghzaoui</h2>
+                    <div class="parti-politique mouvement-chaab">Mouvement Echaâb</div>
+                    <a href="#" target="_blank">Programme pas disponible</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="candidat">
+                    <img src="images/ayachi_zammel.jpg" alt="Ayachi Zammel">
+                    <h2>Ayachi Zammel</h2>
+                    <div class="parti-politique azimoun">Azimoun</div>
+                    <a href="#" target="_blank">Programme pas disponible</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="candidat">
+                    <img src="images/abdellatif_mekki.jpg" alt="Abdellatif Mekki">
+                    <h2>Abdellatif Mekki</h2>
+                    <div class="parti-politique amal-injaz">Âmal w Injaz</div>
+                    <a href="#" target="_blank">Programme pas disponible</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="candidat">
+                    <img src="images/mondher_zenaidi.jpg" alt="Mondher Zenaïdi">
+                    <h2>Mondher Zenaïdi</h2>
+                    <div class="parti-politique independant">Indépendant</div>
+                    <a href="#" target="_blank">Programme pas disponible</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="candidat">
+                    <img src="images/imed_daemi.jpg" alt="Imed Daïmi">
+                    <h2>Imed Daïmi</h2>
+                    <div class="parti-politique hezb-harak">Hizb el-Harak</div>
+                    <a href="#" target="_blank">Programme pas disponible</a>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer>
-        <p>V1</p>
+        <p>Mortadha Ghaliounji</p>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
