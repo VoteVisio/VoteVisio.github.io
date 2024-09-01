@@ -7,11 +7,13 @@
     <title>VoteVisio</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to right, #b71c1c, #f44336);
+            font-family: 'Roboto', sans-serif;
+            background: #1e1e1e;
             color: #fff;
             margin: 0;
             padding: 0;
@@ -21,7 +23,7 @@
         }
 
         header {
-            background: linear-gradient(to right, #b71c1c, #f44336);
+            background: #2c2c2c;
             text-align: center;
             padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -39,14 +41,16 @@
         }
 
         .candidat {
-            background: #ffffff1a;
-            border-radius: 20px;
+            background: #333;
+            border-radius: 15px;
             text-align: center;
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             overflow: hidden;
             color: #fff;
-            padding-bottom: 20px;
+            padding: 15px 0;
+            position: relative;
+            margin-bottom: 20px;
         }
 
         .candidat:hover {
@@ -59,7 +63,7 @@
             height: auto;
             object-fit: cover;
             aspect-ratio: 1 / 1;
-            border-bottom: 4px solid #f44336;
+            border-bottom: 4px solid #ff7e5f;
         }
 
         .candidat h2 {
@@ -69,13 +73,14 @@
         }
 
         .parti-politique {
-            padding: 8px 12px;
-            border-radius: 15px;
-            margin: 10px auto 0;
+            padding: 5px 10px;
+            border-radius: 12px;
+            margin: 5px auto;
             font-size: 1em;
-            display: block;
+            display: inline-block;
             color: #fff;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            font-family: 'Roboto', sans-serif;
         }
 
         .independant {
@@ -83,11 +88,12 @@
         }
 
         .mouvement-chaab {
-            background-color: #b71c1c;
+            background-color: #ff7e5f;
         }
 
         .azimoun {
-            background-color: #fbc02d;
+            background-color: #feb47b;
+            color: #000;
         }
 
         .amal-injaz {
@@ -98,28 +104,57 @@
             background-color: #8bc34a;
         }
 
-        .candidat a {
-            display: inline-block;
-            margin: 20px 0;
-            padding: 15px 30px;
-            background: #ffffff1a;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            pointer-events: none;
-            cursor: not-allowed;
-            transition: background 0.3s ease, color 0.3s ease;
-            border: 2px solid #ffffff66;
+        .btn-container {
+            margin-top: 10px;
+            text-align: center;
         }
 
-        .candidat a:hover {
-            background: #ffffff33;
-            color: #ddd;
+        .btn-container a {
+            display: block;
+            margin: 5px auto;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .button-modern {
+            display: inline-block;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-programme {
+            background-color: #ff3b3f;
+        }
+
+        .button-programme:disabled {
+            background-color: #666;
+            cursor: not-allowed;
+        }
+
+        .button-biographie {
+            background-color: #4caf50;
+        }
+
+        .button-biographie:hover,
+        .button-programme:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .button-biographie:disabled {
+            background-color: #888;
+            cursor: not-allowed;
         }
 
         footer {
-            background: rgba(211, 47, 47, 0.9);
+            background: #2c2c2c;
             color: #fff;
             text-align: center;
             padding: 15px;
@@ -149,15 +184,16 @@
 
         @media (max-width: 480px) {
             header img {
-                max-width: 150px;
+                max-width: 200px;
             }
 
             .candidat h2 {
                 font-size: 1.3em;
             }
 
-            .candidat a {
-                padding: 12px 25px;
+            .btn-container a {
+                padding: 6px 12px;
+                font-size: 0.8em;
             }
         }
     </style>
@@ -175,7 +211,10 @@
                     <img src="images/kais_saied.jpg" alt="Kaïs Saïed">
                     <h2>Kaïs Saïed</h2>
                     <div class="parti-politique independant">Indépendant</div>
-                    <a href="#" target="_blank">Pas de programme</a>
+                    <div class="btn-container">
+                        <a href="#" class="button-modern button-programme" aria-disabled="true">Pas de programme</a>
+                        <a href="https://www.wikiwand.com/fr/articles/Ka%C3%AFs_Sa%C3%AFed" class="button-modern button-biographie">Biographie</a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4">
@@ -183,7 +222,10 @@
                     <img src="images/zouhair_maghzaoui.jpg" alt="Zouhair Maghzaoui">
                     <h2>Zouhair Maghzaoui</h2>
                     <div class="parti-politique mouvement-chaab">Mouvement Echaâb</div>
-                    <a href="#" target="_blank">Programme pas disponible</a>
+                    <div class="btn-container">
+                        <a href="#" class="button-modern button-programme">Programme pas disponible</a>
+                        <a href="https://www.businessnews.com.tn/qui-est-vraiment-zouhair-maghzaoui,519,140082,3" class="button-modern button-biographie">Biographie</a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4">
@@ -191,7 +233,10 @@
                     <img src="images/ayachi_zammel.jpg" alt="Ayachi Zammel">
                     <h2>Ayachi Zammel</h2>
                     <div class="parti-politique azimoun">Azimoun</div>
-                    <a href="#" target="_blank">Programme pas disponible</a>
+                    <div class="btn-container">
+                        <a href="#" class="button-modern button-programme">Programme pas disponible</a>
+                        <a href="https://www.tunisienumerique.com/qui-est-ayachi-zammel-candidat-aux-presidentielles/" class="button-modern button-biographie">Biographie</a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4">
@@ -199,7 +244,10 @@
                     <img src="images/abdellatif_mekki.jpg" alt="Abdellatif Mekki">
                     <h2>Abdellatif Mekki</h2>
                     <div class="parti-politique amal-injaz">Âmal w Injaz</div>
-                    <a href="#" target="_blank">Programme pas disponible</a>
+                    <div class="btn-container">
+                        <a href="#" class="button-modern button-programme">Programme pas disponible</a>
+                        <a href="https://www.wikiwand.com/fr/articles/Abdellatif_Mekki" class="button-modern button-biographie">Biographie</a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4">
@@ -207,7 +255,10 @@
                     <img src="images/mondher_zenaidi.jpg" alt="Mondher Zenaïdi">
                     <h2>Mondher Zenaïdi</h2>
                     <div class="parti-politique independant">Indépendant</div>
-                    <a href="#" target="_blank">Programme pas disponible</a>
+                    <div class="btn-container">
+                        <a href="#" class="button-modern button-programme">Programme pas disponible</a>
+                        <a href="https://www.wikiwand.com/fr/articles/Mondher_Zenaidi" class="button-modern button-biographie">Biographie</a>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4">
@@ -215,14 +266,17 @@
                     <img src="images/imed_daemi.jpg" alt="Imed Daïmi">
                     <h2>Imed Daïmi</h2>
                     <div class="parti-politique hezb-harak">Hizb el-Harak</div>
-                    <a href="#" target="_blank">Programme pas disponible</a>
+                    <div class="btn-container">
+                        <a href="#" class="button-modern button-programme">Programme pas disponible</a>
+                        <a href="https://www.wikiwand.com/fr/articles/Imed_Da%C3%AFmi" class="button-modern button-biographie">Biographie</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>V2</p>
+    <p>&copy; 2024 VoteVisio.</p>
     </footer>
 
     <!-- Bootstrap JS -->
