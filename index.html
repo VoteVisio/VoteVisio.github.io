@@ -48,12 +48,12 @@
             height: auto;
         }
 
-        .btn-news {
+        .btn-news, .btn-history {
             display: inline-block;
             border: none;
             border-radius: 8px;
             padding: 12px;
-            background-color: #ff3b3f; /* Même couleur que le bouton "Programme" */
+            background-color: #ff3b3f; /* Couleur pour le bouton "Programme" */
             color: #fff;
             text-align: center;
             font-size: 24px; /* Ajustez la taille de l'icône si nécessaire */
@@ -63,10 +63,18 @@
             text-decoration: none;
             position: absolute;
             top: 20px; /* Ajustez selon l'espace disponible */
-            right: 20px; /* Ajustez selon l'espace disponible */
         }
 
-        .btn-news:hover {
+        .btn-news {
+            right: 80px;
+        }
+
+        .btn-history {
+            background-color: #ff7e5f; /* Couleur différente pour le bouton "Histoire" */
+            right: 20px;
+        }
+
+        .btn-news:hover, .btn-history:hover {
             background-color: #e03b3f; /* Couleur plus foncée au survol */
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
@@ -241,73 +249,82 @@
         <a href="rss.html" class="btn-news">
             <i class="fas fa-newspaper"></i>
         </a>
+        <a href="histoire.html" class="btn-history">
+            <i class="fas fa-book"></i>
+        </a>
     </header>
 
     <section class="container">
         <div class="row candidats">
-            <div class="col-lg-4 col-md-6 mb-4">
+            <!-- Candidat Kaïs Saïed -->
+            <div class="col-md-4">
                 <div class="candidat">
                     <img src="images/kais_saied.jpg" alt="Kaïs Saïed">
                     <h2>Kaïs Saïed</h2>
                     <div class="parti-politique independant">Indépendant</div>
                     <div class="btn-container">
-                        <a href="#" class="button-modern button-programme" aria-disabled="true">Pas de programme</a>
-                        <a href="https://www.wikiwand.com/fr/articles/Ka%C3%AFs_Sa%C3%AFed" class="button-modern button-biographie">Biographie</a>
+                        <a href="#" class="button-modern button-biographie">Biographie</a>
+                        <a href="#" class="button-modern button-programme" disabled>Pas de programme</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 mb-4">
+            <!-- Candidat Zouhair Maghzaoui -->
+            <div class="col-md-4">
                 <div class="candidat">
                     <img src="images/zouhair_maghzaoui.jpg" alt="Zouhair Maghzaoui">
                     <h2>Zouhair Maghzaoui</h2>
                     <div class="parti-politique mouvement-chaab">Mouvement Echaâb</div>
                     <div class="btn-container">
-                                                <a href="#" class="button-modern button-programme">Programme pas disponible</a>
-                        <a href="https://www.businessnews.com.tn/qui-est-vraiment-zouhair-maghzaoui,519,140082,3" class="button-modern button-biographie">Biographie</a>
+                        <a href="#" class="button-modern button-biographie">Biographie</a>
+                        <a href="#" class="button-modern button-programme">Voir le programme</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 mb-4">
+            <!-- Candidat Ayachi Zammel -->
+            <div class="col-md-4">
                 <div class="candidat">
                     <img src="images/ayachi_zammel.jpg" alt="Ayachi Zammel">
                     <h2>Ayachi Zammel</h2>
                     <div class="parti-politique azimoun">Azimoun</div>
                     <div class="btn-container">
-                        <a href="#" class="button-modern button-programme">Programme pas disponible</a>
-                        <a href="https://www.tunisienumerique.com/qui-est-ayachi-zammel-candidat-aux-presidentielles/" class="button-modern button-biographie">Biographie</a>
+                        <a href="#" class="button-modern button-biographie">Biographie</a>
+                        <a href="#" class="button-modern button-programme">Voir le programme</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="candidat">
-                    <img src="images/abdellatif_mekki.jpg" alt="Abdellatif Mekki">
-                    <h2>Abdellatif Mekki</h2>
-                    <div class="parti-politique amal-injaz">Âmal w Injaz</div>
-                    <div class="btn-container">
-                        <a href="#" class="button-modern button-programme">Programme pas disponible</a>
-                        <a href="https://www.wikiwand.com/fr/articles/Abdellatif_Mekki" class="button-modern button-biographie">Biographie</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 mb-4">
+            <!-- Candidat Mondher Zenaïdi -->
+            <div class="col-md-4">
                 <div class="candidat">
                     <img src="images/mondher_zenaidi.jpg" alt="Mondher Zenaïdi">
                     <h2>Mondher Zenaïdi</h2>
-                    <div class="parti-politique independant">Indépendant</div>
+                    <div class="parti-politique independant">Indépendant - Affilié RCD</div>
                     <div class="btn-container">
-                        <a href="#" class="button-modern button-programme">Programme pas disponible</a>
-                        <a href="https://www.wikiwand.com/fr/articles/Mondher_Zenaidi" class="button-modern button-biographie">Biographie</a>
+                        <a href="#" class="button-modern button-biographie">Biographie</a>
+                        <a href="#" class="button-modern button-programme">Voir le programme</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 mb-4">
+            <!-- Candidat Abdellatif Mekki -->
+            <div class="col-md-4">
+                <div class="candidat">
+                    <img src="images/abdellatif_mekki.jpg" alt="Abdellatif Mekki">
+                    <h2>Abdellatif Mekki</h2>
+                    <div class="parti-politique amal-injaz">Âmal w Injaz - Affilié Ennahdha</div>
+                    <div class="btn-container">
+                        <a href="#" class="button-modern button-biographie">Biographie</a>
+                        <a href="#" class="button-modern button-programme">Voir le programme</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Candidat Imed Daïmi -->
+            <div class="col-md-4">
                 <div class="candidat">
                     <img src="images/imed_daemi.jpg" alt="Imed Daïmi">
                     <h2>Imed Daïmi</h2>
                     <div class="parti-politique hezb-harak">Hizb el-Harak</div>
                     <div class="btn-container">
-                        <a href="#" class="button-modern button-programme">Programme pas disponible</a>
-                        <a href="https://www.wikiwand.com/fr/articles/Imed_Da%C3%AFmi" class="button-modern button-biographie">Biographie</a>
+                        <a href="#" class="button-modern button-biographie">Biographie</a>
+                        <a href="#" class="button-modern button-programme">Voir le programme</a>
                     </div>
                 </div>
             </div>
@@ -315,10 +332,10 @@
     </section>
 
     <footer>
-        <p>&copy; 2024 VoteVisio.</p>
+        <p>&copy; 2024 VoteVisio. Tous droits réservés.</p>
     </footer>
 
-    <!-- Bootstrap JS -->
+    <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
